@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+     
+      <IsPackable>true</IsPackable>
+		<Version>1.1.1.7</Version>
+	    <IncludeBuildOutput>true</IncludeBuildOutput>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+      <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+      <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="HearingInstrumentControllerService">
+            <HintPath>ExtSupportFiles\HearingInstrumentControllerService.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+     <ItemGroup>
+        <PackageReference Include="Allure.Reqnroll" Version="2.12.0" />
+        <PackageReference Include="Appium.WebDriver" Version="4.4.5" />
+        <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+        <PackageReference Include="ExtentReports" Version="5.0.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+        <PackageReference Include="NUnit" Version="3.14.0" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+        <PackageReference Include="Reqnroll.NUnit" Version="1.0.1" />
+        <PackageReference Include="SixLabors.ImageSharp" Version="3.1.5" />
+        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="ExtSupportFiles\**\*.*" />
+        <Content Update="Fenris.props">
+          <PackagePath>build/net8.0</PackagePath>
+        </Content>
+    </ItemGroup>
+
+    <!--Needed for Rider Plugin: Reqnroll for Rider-->
+    <ItemGroup>
+        <Content Include="Features\Accessibility_Test\Accessibility_LargerText.feature" />
+        <Content Include="Features\Automation\Extraction.feature" />
+        <Content Include="Features\Component_Test\ComponentTest.feature" />
+        <Content Include="Features\Examples\Playground.feature" />
+        <Content Include="Features\Examples\Smoke_Test.feature" />
+        <Content Include="Features\Examples\SmokeTest_Appium.feature" />
+        <Content Include="Features\Examples\TestCaseReview.feature" />
+        <Content Include="Features\Language\LanguageTests.feature" />
+        <Content Include="Features\NAP\ButtonTest.feature" />
+        <Content Include="Features\NAP\CheckboxTest.feature" />
+        <Content Include="Features\NativeSettings\NativeSettings.feature" />
+        <Content Include="Features\Plugins\Pairing\MFiAlreadyPairedFlow\Pairing-MFiAlreadyPaired.feature" />
+        <Content Include="Features\Plugins\POCConsent\NAP_ConsentPlugin.feature" />
+        <Content Include="Features\Plugins\ReadPrivacyPolicy\ReadPrivacyPolicy.feature" />
+        <Content Include="Features\ServiceProviderPlugin\PairingServiceProvider.feature" />
+        <Content Include="Features\VisualTest\VisualtestPOC.feature" />
+    </ItemGroup>
+
+    <Import Project="build/Fenris.props" />
+
+	<PropertyGroup>
+		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+		<ItemGroup>
+			<BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+		</ItemGroup>
+	</Target>
+	
+	<ItemGroup>
+		<Content Include="build\*.*" PackagePath="build\$(TargetFramework)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Gleipner\Gleipner.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\Polaris\Polaris.csproj">
+			<PrivateAssets>all</PrivateAssets>
+		</ProjectReference>
+	</ItemGroup>
+
+  <ItemGroup>
+	  <None Update="build\allureConfig.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <Link>allureConfig.json</Link>
+		</None>
+  </ItemGroup>
+
+</Project>

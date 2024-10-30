@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "title": "Test Plan for Consent Plugin",
+  "tests": [
+    {
+      "name": "Verify Consent Plugin Extended",
+      "description": "This test verifies the extended functionality of the Consent Plugin.",
+      "id": "1655572",
+      "selector": "Verify Consent Plugin Extended",
+      "tags": [ "normal", "Consent" ]
+    },
+    {
+      "name": "Verify Consent Plugin",
+      "description": "This test verifies the basic functionality of the Consent Plugin.",
+      "id": "1655571",
+      "selector": "Verify Consent Plugin",
+      "tags": [ "normal", "Consent" ]
+    }
+  ]
+}

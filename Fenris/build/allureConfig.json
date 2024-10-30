@@ -1,0 +1,44 @@
+{
+  "$schema": "https://raw.githubusercontent.com/allure-framework/allure-csharp/2.12.0/Allure.Reqnroll/Schemas/allureConfig.schema.json",
+  "allure": {
+    "directory": "allure-results",
+    "links": [
+      "{link}",
+      "{issue}",
+      "https://dev.azure.com/GNHearing/GNHDesignInputsandbox/_workitems/edit/{tms}"
+    ],
+    "gherkinPatterns": {
+      "stepArguments": {
+        "createFromDataTables": true,
+        "nameColumn": "a.*",
+        "valueColumn": "v.*"
+      },
+      "grouping": {
+        "suites": {
+          "parentSuite": "parentSuite:(.+)",
+          "suite": "suite:(.+)",
+          "subSuite": "subSuite:(.+)"
+        },
+        "behaviors": {
+          "epic": "epic:(.+)",
+          "story": "story:(.+)"
+        },
+        "packages": {
+          "package": "^package:?(.+)",
+          "testClass": "^class:?(.+)",
+          "testMethod": "^method:?(.+)"
+        }
+      },
+      "metadata": {
+        "owner": "owner:(.+)",
+        "severity": "(normal|blocker|critical|minor|trivial)",
+        "label": "label:([\\w]+):(.+)"
+      },
+      "links": {
+        "link": "link:(.+)",
+        "issue": "issue:(\\d+)",
+        "tms": "tms:(\\d+)"
+      }
+    }
+  }
+}

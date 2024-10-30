@@ -1,0 +1,22 @@
+# Normalize line endings
+* text=auto
+
+# Text
+*.feature text
+*.config  text
+*.cs      text
+*.xml     text
+*.sh      text
+
+# Custom text
+*.sln     text eol=crlf
+
+# Binary files
+*.apk     binary
+
+
+# Diff handling for Visual Studio
+*.cs    diff=csharp
+
+# Sort all csproj files prior to commit to decrease amount of merge conflicts on xml data.
+*.csproj text filter=csprojarrange

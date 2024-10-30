@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+      <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+      <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+      <PackageReference Include="NUnit" Version="3.14.0" />
+      <PackageReference Include="System.ServiceModel.Http" Version="6.2.0" />
+      <PackageReference Include="System.ServiceModel.Primitives" Version="6.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Polaris\Polaris.csproj" />
+        <ProjectReference Include="..\TestApiHelper\TestApiHelper.csproj" />
+    </ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="HearingInstrumentControllerService, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>..\Fenris\ExtSupportFiles\HearingInstrumentControllerService.dll</HintPath>
+			<SpecificVersion>False</SpecificVersion>
+		</Reference>
+	</ItemGroup>
+
+
+</Project>
